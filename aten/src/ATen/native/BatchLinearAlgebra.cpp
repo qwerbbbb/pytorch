@@ -2,7 +2,6 @@
 #include <ATen/CPUApplyUtils.h>
 #include <ATen/Dispatch.h>
 #include <ATen/NativeFunctions.h>
-#include <ATen/LegacyTHFunctions.h>
 
 #include <ATen/native/LinearAlgebraUtils.h>
 #include <ATen/Parallel.h>
@@ -254,6 +253,12 @@ Tensor inverse(const Tensor &self) {
   if (self.size(-1) == 0) {
     return at::empty_like(self);
   }
+<<<<<<< HEAD
+=======
+  if (self.dim() == 2) {
+    return at::_getri_single(self);
+  }
+>>>>>>> Generate TH functions outside of Type
   squareCheckInputs(self);
   return at::_inverse_helper(self);
 }
